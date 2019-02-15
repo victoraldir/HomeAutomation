@@ -1,2 +1,2 @@
 # HomeAutomation
-Just a few firmwares to use when I need to automate something
+Just a few firmwares to use when it happens to need to automate something
