@@ -1,3 +1,8 @@
+#include <SoftwareSerial.h>
+
+const int RX_PIN = 0;
+const int TX_PIN = 1;
+const int BLUETOOTH_BAUD_RATE = 9600;
 
 const int relay1 = 5;
 const int relay2 = 6;
@@ -17,12 +22,15 @@ int relay4State = LOW;
 char inputCommand = '0';         // The command itself
 bool incomingEvent = false;  // Flags when something get in
 
+SoftwareSerial bluetooth(RX_PIN, TX_PIN);
+
 void setup() {
   // initialize serial:
   Serial.begin(9600);
+  bluetooth.begin(BLUETOOTH_BAUD_RATE);
   // reserve 200 bytes for the inputString:
 //  inputCommand.reserve(200);
-
+  pinMode(2, OUTPUT);
   pinMode(relay1, OUTPUT);
   pinMode(relay2, OUTPUT);
   pinMode(relay3, OUTPUT);
@@ -33,6 +41,8 @@ void setup() {
   digitalWrite(relay2, relay2State);
   digitalWrite(relay3, relay3State);
   digitalWrite(relay4, relay4State);
+  digitalWrite(2, HIGH);
+  
 }
 
 void loop() {
